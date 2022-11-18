@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:suitmedia_fe/app/data/constants.dart';
+import 'package:suitmedia_fe/app/modules/list_user/controllers/list_user_controller.dart';
 import 'app/routes/app_pages.dart';
 
 void main() {
+  final listUserController = Get.put(ListUserController());
+
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
