@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suitmedia_fe/app/data/constants.dart';
@@ -9,15 +10,16 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+
     return Form(
+      key: formKey,
       child: Column(
         children: [
           TextFormField(
             style: GoogleFonts.openSans(fontSize: 16),
-            keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
-            onSaved: (email) {},
             decoration: const InputDecoration(
               hintText: "Name",
               prefixIcon: Padding(
@@ -30,9 +32,17 @@ class WelcomeScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: TextFormField(
               style: GoogleFonts.openSans(fontSize: 16),
-              textInputAction: TextInputAction.done,
-              obscureText: true,
               cursorColor: kPrimaryColor,
+              validator: ((value) {
+                String? original = value;
+                String? reverse = original!.split('').reversed.join('');
+
+                if (reverse == original) {
+                  return null;
+                } else {
+                  return "It's not palindrome";
+                }
+              }),
               decoration: const InputDecoration(
                 hintText: "Palindrome",
                 prefixIcon: Padding(
@@ -44,9 +54,39 @@ class WelcomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding),
           Hero(
-            tag: "login_btn",
+            tag: "chech_btn",
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.success,
+                    animType: AnimType.rightSlide,
+                    title: "It's palindrome",
+                    desc: 'Your word is actually palindrome',
+                    btnCancelOnPress: () {},
+                    btnOkOnPress: () {},
+                    buttonsTextStyle: GoogleFonts.openSans(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ).show();
+                } else {
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.error,
+                    animType: AnimType.rightSlide,
+                    title: "It's not palindrome",
+                    desc: 'Your word is actually not palindrome',
+                    btnCancelOnPress: () {},
+                    btnOkOnPress: () {},
+                    buttonsTextStyle: GoogleFonts.openSans(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ).show();
+                }
+              },
               child: Text(
                 "check".toUpperCase(),
                 style: GoogleFonts.openSans(
@@ -58,7 +98,7 @@ class WelcomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Hero(
-            tag: "login_btn",
+            tag: "next_btn",
             child: ElevatedButton(
               onPressed: () {},
               child: Text(
