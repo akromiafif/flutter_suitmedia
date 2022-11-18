@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:suitmedia_fe/app/data/constants.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class WelcomeScreen extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
+            style: GoogleFonts.openSans(fontSize: 16),
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
@@ -27,6 +29,7 @@ class WelcomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: TextFormField(
+              style: GoogleFonts.openSans(fontSize: 16),
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColor,
@@ -34,7 +37,7 @@ class WelcomeScreen extends StatelessWidget {
                 hintText: "Palindrome",
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(defaultPadding),
-                  child: Icon(Icons.lock),
+                  child: Icon(Icons.account_tree_sharp),
                 ),
               ),
             ),
@@ -45,7 +48,25 @@ class WelcomeScreen extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {},
               child: Text(
-                "Login".toUpperCase(),
+                "check".toUpperCase(),
+                style: GoogleFonts.openSans(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 15),
+          Hero(
+            tag: "login_btn",
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                "next".toUpperCase(),
+                style: GoogleFonts.openSans(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),

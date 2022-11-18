@@ -11,14 +11,10 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeView'),
-        centerTitle: true,
-      ),
       body: Background(
         child: SingleChildScrollView(
           child: Responsive(
-            mobile: const MobileLoginScreen(),
+            mobile: const MobileWelomeScreen(),
             desktop: Row(
               children: [
                 const Expanded(
@@ -44,8 +40,8 @@ class HomeView extends GetView<HomeController> {
   }
 }
 
-class MobileLoginScreen extends StatelessWidget {
-  const MobileLoginScreen({
+class MobileWelomeScreen extends StatelessWidget {
+  const MobileWelomeScreen({
     Key? key,
   }) : super(key: key);
 
