@@ -1,9 +1,11 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:suitmedia_fe/app/data/constants.dart';
+import 'package:suitmedia_fe/app/modules/home/controllers/home_controller.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends GetView<HomeController> {
   const WelcomeScreen({
     Key? key,
   }) : super(key: key);
@@ -20,6 +22,7 @@ class WelcomeScreen extends StatelessWidget {
             style: GoogleFonts.openSans(fontSize: 16),
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
+            controller: controller.nameController,
             decoration: const InputDecoration(
               hintText: "Name",
               prefixIcon: Padding(
@@ -100,7 +103,9 @@ class WelcomeScreen extends StatelessWidget {
           Hero(
             tag: "next_btn",
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed('/user', arguments: controller.nameController.text);
+              },
               child: Text(
                 "next".toUpperCase(),
                 style: GoogleFonts.openSans(
