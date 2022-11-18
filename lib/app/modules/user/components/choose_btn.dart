@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:suitmedia_fe/app/data/constants.dart';
 
 class ChooseBtn extends StatelessWidget {
@@ -10,13 +11,11 @@ class ChooseBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Hero(
-          tag: "login_btn",
-          child: ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              "Login".toUpperCase(),
-            ),
+        Text(
+          "Selected User Name",
+          style: GoogleFonts.openSans(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
           ),
         ),
         const SizedBox(height: 16),
@@ -25,8 +24,11 @@ class ChooseBtn extends StatelessWidget {
           style: ElevatedButton.styleFrom(
               backgroundColor: kPrimaryLightColor, elevation: 0),
           child: Text(
-            "Sign Up".toUpperCase(),
-            style: const TextStyle(color: Colors.black),
+            "Choose a User",
+            style: GoogleFonts.openSans(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],
